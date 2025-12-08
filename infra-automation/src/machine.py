@@ -12,17 +12,6 @@ class Machine(BaseModel):
 
     @field_validator("name", mode = "before")
     def validate_name(cls, value: Any) -> str:
-        """Validates the machine name is between 1 and 30 characters.
-        
-        Args:
-            value: The name value to validate
-            
-        Returns:
-            str: The validated name
-            
-        Raises:
-            ValueError: If name is empty or longer than 30 characters
-        """
         if len(value) == 0:
             raise ValueError (f"You have not entered a name.")
         if len(value) > 30:
