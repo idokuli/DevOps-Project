@@ -49,8 +49,18 @@ class MachineCreator:
                         CPU cores: {cpu}, RAM size: {ram} disk size: {disk}""")
             return True
         except ValidationError as error:
-            print(f"Validation error: {error}")
-            logging.info(f"The operation was not successfull because there is a problem with the object with the name {machinename}")
+            # Build a detailed error message
+            error_details = [f"The operation was not successful because there is a problem with the object with the name {machinename}"]
+            error_details.append("Validation errors:")
+            
+            for err in error.errors():
+                field = err['loc'][0]
+                message = err['msg']
+                error_details.append(f"  - {field}: {message}")
+                print(f"Validation error for '{field}': {message}")
+            
+            # Log as multi-line message
+            logging.info("\n".join(error_details))
             return False
         except ValueError as error:
             print(f"Invalid input type, error raised: {error}")
@@ -106,4 +116,3 @@ class MachineCreator:
             List[Machine]: List of all Machine objects created by this MachineCreator
         """
         return self.machines
-
