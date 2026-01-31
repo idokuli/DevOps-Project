@@ -5,3 +5,7 @@ env/
 .venv/
 ENV/
 venv/
+.terraform
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.backup
