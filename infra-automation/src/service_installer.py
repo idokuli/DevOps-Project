@@ -51,4 +51,3 @@ class ServiceInstaller:
         logging.info(f"Starting service installation for {len(machines)} machine(s)")
         for machine in machines:
             self.install_nginx(machine)
-

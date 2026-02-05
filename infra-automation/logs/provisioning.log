@@ -1,0 +1,66 @@
+2026-02-05 18:43:01,859 - INFO - root - === Infrastructure provisioning started ===
+2026-02-05 18:43:40,519 - INFO - root - The object has been created successfuly its properties are: Region: us-east-1, Name: test, AMI ID: ami-0c398cb65a93047f2
+                        Instance Type: t3.micro
+2026-02-05 18:43:43,066 - INFO - root - All 1 machine configuration(s) have been saved in a JSON file at infra-automation/configs/instances.json
+2026-02-05 18:43:43,077 - INFO - root - Loaded 1 machine configuration(s) from infra-automation/configs/instances.json
+2026-02-05 18:45:01,541 - INFO - root - === Infrastructure provisioning started ===
+2026-02-05 18:45:25,878 - INFO - root - The object has been created successfuly its properties are: Region: us-east-1, Name: test, AMI ID: ami-0c398cb65a93047f2
+                        Instance Type: t3.micro
+2026-02-05 18:45:27,369 - INFO - root - All 1 machine configuration(s) have been saved in a JSON file at infra-automation/configs/instances.json
+2026-02-05 18:45:27,371 - INFO - root - Loaded 1 machine configuration(s) from infra-automation/configs/instances.json
+2026-02-05 18:50:19,490 - INFO - root - Starting service installation for 1 machine(s)
+2026-02-05 18:50:19,490 - INFO - root - Installing Nginx for machine: test
+2026-02-05 18:50:19,510 - INFO - root - Something went wrong with the script for machine test, because it exited with a wrong exit code
+2026-02-05 18:50:19,510 - INFO - root - === Infrastructure provisioning completed ===
+2026-02-05 19:17:22,700 - INFO - root - === Infrastructure provisioning started ===
+2026-02-05 19:17:44,245 - INFO - root - === Infrastructure provisioning started ===
+2026-02-05 19:18:04,716 - INFO - root - The operation was not successful because there is a problem with the object with the name tes
+Validation errors:
+  - region: Value error, The region you want does not exist in ['us-east-1', 'eu-west-1', 'ap-south-1', 'us-west-2', 'eu-west-2', 'ap-southeast-2', 'us-east-2', 'eu-central-1', 'ap-northeast-1', 'ap-northeast-2', 'ap-southeast-1', 'ca-central-1', 'sa-east-1', 'us-west-1', 'eu-north-1']. This is what you have entered us
+  - ami_id: Value error, Format must be 'ami-' followed by hex characters.
+  - instance_type: Value error, Only 'T' (Burstable) or 'M' (General Purpose) instances are permitted.
+2026-02-05 19:23:59,610 - INFO - root - The object has been created successfuly its properties are: Region: us-east-1, Name: test1, AMI ID: ami-0c398cb65a93047f2
+                        Instance Type: t3.micro
+2026-02-05 19:24:16,056 - INFO - root - The object has been created successfuly its properties are: Region: us-east-1, Name: test4, AMI ID: ami-0c398cb65a93047f2
+                        Instance Type: t3.micro
+2026-02-05 19:24:17,107 - INFO - root - All 2 machine configuration(s) have been saved in a JSON file at infra-automation/configs/instances.json
+2026-02-05 19:24:17,117 - INFO - root - Loaded 2 machine configuration(s) from infra-automation/configs/instances.json
+2026-02-05 19:26:59,524 - INFO - root - === Infrastructure provisioning started ===
+2026-02-05 19:27:20,891 - INFO - root - The object has been created successfuly its properties are: Region: us-east-1, Name: test2, AMI ID: ami-0c398cb65a93047f2
+                        Instance Type: t3.micro
+2026-02-05 19:27:56,632 - INFO - root - The object has been created successfuly its properties are: Region: eu-north-1, Name: test4, AMI ID: ami-01fd6fa49060e89a6
+                        Instance Type: t3.micro
+2026-02-05 19:27:58,140 - INFO - root - All 2 machine configuration(s) have been saved in a JSON file at infra-automation/configs/instances.json
+2026-02-05 19:27:58,148 - INFO - root - Loaded 2 machine configuration(s) from infra-automation/configs/instances.json
+2026-02-05 19:30:00,740 - INFO - root - === Infrastructure provisioning started ===
+2026-02-05 19:30:27,270 - INFO - root - The object has been created successfuly its properties are: Region: eu-north-1, Name: test2, AMI ID: ami-01fd6fa49060e89a6
+                        Instance Type: t3.micro
+2026-02-05 19:30:52,144 - INFO - root - The object has been created successfuly its properties are: Region: us-east-1, Name: test4, AMI ID: ami-0c398cb65a93047f2
+                        Instance Type: t3.micro
+2026-02-05 19:30:53,376 - INFO - root - All 2 machine configuration(s) have been saved in a JSON file at infra-automation/configs/instances.json
+2026-02-05 19:30:53,384 - INFO - root - Loaded 2 machine configuration(s) from infra-automation/configs/instances.json
+2026-02-05 19:40:29,067 - INFO - root - === Infrastructure provisioning started ===
+2026-02-05 19:41:03,600 - INFO - root - The object has been created successfuly its properties are: Region: eu-north-1, Name: test1, AMI ID: ami-01fd6fa49060e89a6
+                        Instance Type: t3.micro
+2026-02-05 19:41:28,306 - INFO - root - The object has been created successfuly its properties are: Region: us-east-1, Name: test4, AMI ID: ami-0c398cb65a93047f2
+                        Instance Type: t3.micro
+2026-02-05 19:46:13,590 - INFO - root - Starting service installation for 1 machine(s)
+2026-02-05 19:46:13,590 - INFO - root - Installing Nginx for machine: test1
+2026-02-05 19:46:13,605 - INFO - root - Something went wrong with the script for machine test1, because it exited with a wrong exit code
+2026-02-05 19:52:41,266 - INFO - root - Starting service installation for 1 machine(s)
+2026-02-05 19:52:41,266 - INFO - root - Installing Nginx for machine: test4
+2026-02-05 19:52:41,281 - INFO - root - Something went wrong with the script for machine test4, because it exited with a wrong exit code
+2026-02-05 19:52:41,281 - INFO - root - === Infrastructure provisioning completed ===
+2026-02-05 20:13:19,559 - INFO - root - === Infrastructure provisioning started ===
+2026-02-05 20:13:43,550 - INFO - root - === Infrastructure provisioning started ===
+2026-02-05 20:14:32,094 - INFO - root - The object has been created successfuly its properties are: Region: eu-west-1, Name: prending, AMI ID: ami-0ef0fafba270833fc
+                        Instance Type: t3.micro
+2026-02-05 20:15:56,582 - INFO - root - The object has been created successfuly its properties are: Region: us-east-1, Name: helloing, AMI ID: ami-0c398cb65a93047f2
+                        Instance Type: t3.micro
+2026-02-05 20:20:59,712 - INFO - root - Starting service installation for 1 machine(s)
+2026-02-05 20:20:59,712 - INFO - root - Installing Nginx for machine: prending
+2026-02-05 20:20:59,735 - INFO - root - Something went wrong with the script for machine prending, because it exited with a wrong exit code
+2026-02-05 20:27:43,035 - INFO - root - Starting service installation for 1 machine(s)
+2026-02-05 20:27:43,035 - INFO - root - Installing Nginx for machine: helloing
+2026-02-05 20:27:43,050 - INFO - root - Something went wrong with the script for machine helloing, because it exited with a wrong exit code
+2026-02-05 20:27:43,050 - INFO - root - === Infrastructure provisioning completed ===

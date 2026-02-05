@@ -1,0 +1,14 @@
+[
+    {
+        "name": "test2",
+        "region": "eu-north-1",
+        "ami_id": "ami-01fd6fa49060e89a6",
+        "instance_type": "t3.micro"
+    },
+    {
+        "name": "test4",
+        "region": "us-east-1",
+        "ami_id": "ami-0c398cb65a93047f2",
+        "instance_type": "t3.micro"
+    }
+]

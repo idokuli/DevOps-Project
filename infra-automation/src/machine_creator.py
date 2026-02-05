@@ -10,43 +10,41 @@ class MachineCreator:
         """Initializes the MachineCreator with an empty list of machines."""
         self.machines: List[Machine] = []
     
-    def collect_machine_input(self) -> Optional[Tuple[str, str, int, int, int]]:
+    def collect_machine_input(self) -> Optional[Tuple[str, str, str, str]]:
         """Collects machine configuration from user input.
         
         Returns:
-            Optional[Tuple[str, str, int, int, int]]: A tuple containing (name, os, cpu, ram, disk)
+            Optional[Tuple[str, str, str, str]]: A tuple containing (region, name, ami_id, instance_type)
             or None if input validation fails
         """
         try:
-            machinename = input("What is the machine's name? ")
-            operatinsys = input("What is the operating system that your server need? (windows, ubuntu, centos, linux, macos, debian, redhat) ").lower()
-            cpu = int(input("How many cpu cores does your server need? "))
-            ram = int(input("How many ram memory (in gigabytes) does your server need? "))
-            diskspace = int(input("What is the disk space that you need? (in gigabytes) "))
-            return (machinename, operatinsys, cpu, ram, diskspace)
+            region = input("On which region do you want to create the machine? (e.g. us-east-1, eu-west-1, ap-south-1) ").strip()
+            machinename = input("What is the machine's name? ").strip()
+            ami_id = input("What is the AMI ID that your server need? (e.g. ami-01fd6fa49060e89a6) ").lower().strip()
+            instance_type = input("What is the instance type that your server need? (e.g. t3.micro) ").lower().strip()
+            return (region, machinename, ami_id, instance_type)
         except ValueError as error:
             print(f"Invalid input type, error raised: {error}")
             logging.info("The user provided an invalid input type")
             return None
     
-    def create_machine(self, machinename: str, operatingsys: str, cpu: int, ram: int, disk: int) -> bool:
+    def create_machine(self, region: str, machinename: str, ami_id: str, instance_type: str) -> bool:
         """Creates a Machine object and adds it to the machines list.
         
         Args:
+            region: Region where the machine will be created
             machinename: Name of the machine (1-30 characters)
-            operatingsys: Operating system (windows, ubuntu, centos, linux, macos, debian, redhat)
-            cpu: Number of CPU cores (1-96)
-            ram: RAM size in GB (1-6000)
-            disk: Disk space in GB (1-3000)
+            ami_id: AMI ID of the machine
+            instance_type: Instance type of the machine
             
         Returns:
             bool: True if machine was created successfully, False otherwise
         """
         try:
-            machine = Machine(name=machinename, operatingsys=operatingsys, cpu=cpu, ram=ram, disk=disk)
+            machine = Machine(region=region, name=machinename, ami_id=ami_id, instance_type=instance_type)
             self.machines.append(machine)
-            logging.info(f"""The object has been created successfuly its properties are: Name: {machinename}, Operating System: {operatingsys}
-                        CPU cores: {cpu}, RAM size: {ram} disk size: {disk}""")
+            logging.info(f"""The object has been created successfuly its properties are: Region: {region}, Name: {machinename}, AMI ID: {ami_id}
+                        Instance Type: {instance_type}""")
             return True
         except ValidationError as error:
             # Build a detailed error message
@@ -103,8 +101,8 @@ class MachineCreator:
                     break
                 continue
             
-            machinename, operatingsys, cpu, ram, diskspace = user_input
-            machine_created = self.create_machine(machinename, operatingsys, cpu, ram, diskspace)
+            region, machinename, ami_id, instance_type = user_input
+            machine_created = self.create_machine(region, machinename, ami_id, instance_type)
             
             if not self.should_continue(machine_created):
                 break
