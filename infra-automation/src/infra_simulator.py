@@ -40,13 +40,13 @@ def main():
             "aws_region": region
         }
         
-        tfvars_path = "infra-automation/Terraform/Modules/Deployments/terraform.tfvars.json"
+        tfvars_path = "infra-automation/terraform/modules/deployments/terraform.tfvars.json"
         with open(tfvars_path, "w") as f:
             json.dump(terraform_vars, f, indent=4)
         
         # State file path unique to this region
         state_file = f"terraform.{region}.tfstate"
-        chdir_arg = "-chdir=infra-automation/Terraform/Modules/Deployments"
+        chdir_arg = "-chdir=infra-automation/terraform/modules/deployments"
         
         print(f"Initializing and applying Terraform for {region}...")
         subprocess.run(["terraform", chdir_arg, "init"], check=True)
