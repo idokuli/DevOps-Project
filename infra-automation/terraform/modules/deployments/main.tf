@@ -4,7 +4,7 @@ provider "aws" {
 
 module "custom_vpc_ec2" {
   for_each         = var.instances
-  source           = "../Custom_vpc_ec2"
+  source           = "../custom_vpc_ec2"
   instance_name    = each.key
   vpc_cidr         = "10.0.0.0/16"
   subnet_count     = 3
@@ -15,7 +15,7 @@ module "custom_vpc_ec2" {
 
 module "lb_tg_as" {
   for_each               = var.instances
-  source                 = "../LB_TG_AS"
+  source                 = "../lb_tg_as"
   instance_name          = each.key
   aws_region             = var.aws_region
   vpc_id                 = module.custom_vpc_ec2[each.key].vpc_id

@@ -77,7 +77,7 @@ The program follows this workflow:
 ```
 DevOps-Project/
  ├── infra-automation/
- │    ├── Terraform/        # Modular VPC, EC2, and Load Balancer blueprints
+ │    ├── terraform/        # Modular VPC, EC2, and Load Balancer blueprints
  │    ├── configs/          # instances.json
  │    ├── logs/             # provisioning.log
  │    └── src/

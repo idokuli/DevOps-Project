@@ -71,4 +71,4 @@ sequenceDiagram
 | :--- | :--- |
 | **[infra_simulator.py](./infra-automation/src/infra_simulator.py)** | Handles the multi-region loop and state isolation. |
 | **[machine.py](./infra-automation/src/machine.py)** | Pydantic model for validation and input cleaning. |
-| **[main.tf](./infra-automation/Terraform/Modules/Deployments/main.tf)** | The infrastructure blueprint for Isolated Stacks. |
+| **[main.tf](./infra-automation/terraform/modules/deployments/main.tf)** | The infrastructure blueprint for Isolated Stacks. |
