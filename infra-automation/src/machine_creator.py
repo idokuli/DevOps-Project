@@ -14,7 +14,7 @@ class MachineCreator:
         """Collects machine configuration from user input.
         
         Returns:
-            Optional[Tuple[str, str, str, str]]: A tuple containing (region, name, ami_id, instance_type)
+            Optional[Tuple[str, str, Optional[str], str]]: A tuple containing (region, name, ami_id, instance_type)
             or None if input validation fails
         """
         try:
@@ -22,6 +22,8 @@ class MachineCreator:
             machinename = input("What is the machine's name? ").strip()
             ami_id = input("What is the AMI ID that your server need? (e.g. ami-01fd6fa49060e89a6) ").lower().strip()
             instance_type = input("What is the instance type that your server need? (e.g. t3.micro) ").lower().strip()
+            if(instance_type == ""):
+                instance_type = "t3.micro"
             return (region, machinename, ami_id, instance_type)
         except ValueError as error:
             print(f"Invalid input type, error raised: {error}")

@@ -7,7 +7,8 @@ variable "aws_region" {
 }
 
 variable "instance_type" {
-  type = string
+  type    = string
+  default = "t3.micro"
 }
 variable "vpc_id" {
   type = string

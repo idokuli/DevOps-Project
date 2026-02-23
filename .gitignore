@@ -11,3 +11,4 @@ venv/
 *.tfstate.backup
 *.pem
 terraform.tfvars.*
+.env

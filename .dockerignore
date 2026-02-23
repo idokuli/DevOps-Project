@@ -1,0 +1,26 @@
+# Exclude sensitive files
+.env
+*.pem
+
+# Exclude git metadata
+.git
+.gitignore
+
+# Exclude Python artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+.venv/
+
+# Exclude Terraform artifacts (redundant since we mount them, but good practice)
+.terraform/
+*.tfstate
+*.tfstate.backup
+
+# Exclude local OS files
+.DS_Store
+
+# Exclude local logs
+infra-automation/logs/

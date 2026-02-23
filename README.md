@@ -17,29 +17,40 @@ The project follows a modular, object-oriented design with clear separation of c
 - **`infra_simulator.py`**: The main orchestrator that groups machines by region and executes isolated Terraform "waves."
 
 ### Prerequisites
-- Python 3.10+
-- [Terraform](https://www.terraform.io/downloads) installed and in PATH
-- AWS CLI configured (`aws configure`)
+- [Docker](https://www.docker.com/products/docker-desktop) and **Docker Compose**
 - Valid AWS credentials
 
-### Setup
+### Setup & Run (Standard Bash)
 
 **IMPORTANT**: You must run all commands from the project root folder (`DevOps-Project/`).
 
 ```bash
-# 1. Navigate to project root
-cd DevOps-Project
-
-# 2. Create virtual environment
+# 1. Create virtual environment
 python -m venv venv
-venv\Scripts\activate  # Linux: source venv/bin/activate
+source venv/bin/activate  # Windows: venv\Scripts\activate
 
-# 3. Install dependencies
+# 2. Install dependencies
 pip install -r infra-automation/requirements.txt
 
-# 4. Run the program
+# 3. Run the program
 python infra-automation/src/infra_simulator.py
 ```
+
+### Setup & Run (Docker - Recommended)
+
+Docker provides a pre-configured environment with both Python and Terraform ready to go.
+
+```bash
+# 1. Prepare your credentials (only once)
+cp .env.example .env
+# Edit .env and add your AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY
+
+# 2. Run the tool interactively
+docker compose run --rm devops-tool
+```
+
+> [!TIP]
+> This container supports multi-platform builds (ARM64 and AMD64). If you want to build it for a different machine, use `docker buildx`.
 
 ## Usage
 

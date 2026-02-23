@@ -17,24 +17,25 @@ This document details the high-level design and data flow of the DevOps infrastr
 - **Cleaning**: The `Machine` model automatically strips special characters (brackets `[]`, quotes) from inputs.
 - **Verification**: Validates that instance types belong to the permitted families (`t` or `m`).
 
-### 2. Regional "Waves" (The Orchestrator)
+### 2. Containerized Execution (Docker)
+The entire tool runs within a **multi-architecture Docker container** (Linux/AMD64 or Linux/ARM64).
+- **Embedded Engine**: Both Python 3.12 and Terraform are pre-installed in the container.
+- **State Persistence**: The local project folder is mounted as a volume, ensuring that Terraform state files are saved on your host machine for future management.
+- **Security**: AWS credentials are injected via environment variables (from a local `.env` file), keeping your keys out of the image layers.
+
+### 3. Regional "Waves" (The Orchestrator)
 To avoid Terraform provider conflicts, `infra_simulator.py` groups machines by region.
 - **Wave Execution**: It runs one full Terraform cycle per region.
 - **State Sequestration**: Each region maintains a unique state file (e.g., `terraform.us-east-1.tfstate`), allowing for independent management and cleanup.
 
-### 3. The JSON Variable Bridge
+### 4. The JSON Variable Bridge
 - Python writes a temporary `terraform.tfvars.json` for the current region wave.
 - Terraform reads this file to dynamically populate the `instances` and `aws_region` variables.
 
-### 4. Infrastructure Provisioning (Terraform)
+### 5. Infrastructure Provisioning (Terraform)
 - **Isolated VPC Layer**: Provisions VPCs, Subnets, and Gateways.
 - **Load Balancing Layer**: Creates dedicated Application Load Balancers for every machine.
 - **Compute Layer**: Provisions EC2 instances based on user specs.
-
-### 5. Automated Service Bootstrap
-Immediately after provisioning, Terraform uses `remote-exec` over SSH to:
-- Install **Nginx** and **Stress-ng**.
-- Deploy a "Healthy" status page to the web server.
 
 ---
 
@@ -43,17 +44,18 @@ Immediately after provisioning, Terraform uses `remote-exec` over SSH to:
 ```mermaid
 sequenceDiagram
     participant User
-    participant Python
+    participant Docker_Container
     participant JSON_Bridge
     participant Terraform
     participant AWS
 
-    User->>Python: Input (Multiple Regions/Machines)
-    Python->>Python: Clean Input & Group by Region
+    User->>Docker_Container: Provide Credentials (.env)
+    User->>Docker_Container: Input (Multiple Regions/Machines)
+    Docker_Container->>Docker_Container: Clean Input & Group by Region
     
     loop Per Regional Wave
-        Python->>JSON_Bridge: Write regional tfvars.json
-        Python->>Terraform: terraform apply -state=region.tfstate
+        Docker_Container->>JSON_Bridge: Write regional tfvars.json
+        Docker_Container->>Terraform: terraform apply -state=region.tfstate
         Terraform->>AWS: Create Isolated VPC, LB, & EC2
         AWS-->>Terraform: Infrastructure Ready
         Terraform->>AWS: SSH: Install Nginx & Stress-ng

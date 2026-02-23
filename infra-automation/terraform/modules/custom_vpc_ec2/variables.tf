@@ -9,10 +9,12 @@ variable "subnet_count" {
   type = number
 }
 variable "instance_type" {
-  type = string
+  type    = string
+  default = "t3.micro"
 }
 variable "ami_id" {
-  type = string
+  type    = string
+  default = null
 }
 variable "assign_public_ip" {
   type = bool

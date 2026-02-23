@@ -1,12 +1,12 @@
 from pydantic import BaseModel, field_validator, ValidationInfo
-from typing import Dict, Any
+from typing import Dict, Any, Optional
 import json, logging, subprocess
 
 class Machine(BaseModel):
     """Represents a virtual machine with its configuration."""
     region: str
     name: str
-    ami_id: str
+    ami_id: Optional[str]
     instance_type: str
 
     @field_validator("region", mode = "before")
@@ -25,8 +25,10 @@ class Machine(BaseModel):
         return value
     
     @field_validator("ami_id", mode = "before")
-    def validate_ami_id(cls, value: Any) -> str:
+    def validate_ami_id(cls, value: Any) -> Optional[str]:
         import re
+        if value is None or (isinstance(value, str) and value.strip() == ""):
+            return None
         if not re.match(r"^ami-[0-9a-f]{8,17}$", value):
             raise ValueError("Format must be 'ami-' followed by hex characters.")
         return value
